@@ -2,10 +2,57 @@ import { select } from '@storybook/addon-knobs';
 
 import { theme } from '../../src';
 
+type ColorKeysType = keyof typeof theme.colors;
+// I really wish I could just convert the different options of theme.colors.gray into strings :/
+type HueStringKeysType =
+  | '50'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900';
+
+const colorOptions: ColorKeysType[] = [
+  'black',
+  'blackAlpha',
+  'blue',
+  'current',
+  'cyan',
+  'gray',
+  'green',
+  'indigo',
+  'orange',
+  'pink',
+  'purple',
+  'red',
+  'teal',
+  'transparent',
+  'white',
+  'white',
+  'whiteAlpha',
+  'yellow',
+];
+const hueOptions: HueStringKeysType[] = [
+  '50',
+  '100',
+  '200',
+  '300',
+  '400',
+  '500',
+  '600',
+  '700',
+  '800',
+  '900',
+];
+
 type createColorHueSelectors = (
   key: string,
-  defaultColor: keyof typeof theme.colors,
-  defaultHue: keyof typeof theme.colors.gray
+  defaultColor: ColorKeysType,
+  defaultHue: HueStringKeysType
 ) => string;
 
 export const createColorHueSelectors: createColorHueSelectors = (
@@ -13,15 +60,15 @@ export const createColorHueSelectors: createColorHueSelectors = (
   defaultColor,
   defaultHue
 ) => {
-  const colorSelect = select(
+  const colorSelect = select<ColorKeysType>(
     `${key} color`,
-    Object.keys(theme.colors),
+    colorOptions,
     defaultColor
   );
-  const hueSelect = select(
+  const hueSelect = select<HueStringKeysType>(
     `${key} hue`,
-    Object.keys(theme.colors.gray),
-    `${defaultHue}`
+    hueOptions,
+    defaultHue
   );
 
   if (!theme.colors[colorSelect][hueSelect]) {

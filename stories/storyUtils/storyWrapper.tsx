@@ -5,7 +5,7 @@ import {
   CSSReset,
   ColorModeProvider,
   ColorModeContext,
-} from '../src';
+} from '../../src';
 
 import { createDarkModeToggle } from './createDarkModeToggle';
 
