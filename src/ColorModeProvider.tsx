@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, ReactElement, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 export type ColorModeOptionType = 'light' | 'dark';
 
@@ -18,13 +18,13 @@ export const ColorModeContext = createContext<ColorModeContextType>({
 
 interface ColorModeProviderPropTypes {
   value?: ColorModeOptionType;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-export const ColorModeProvider = ({
+export const ColorModeProvider: React.FC<ColorModeProviderPropTypes> = ({
   value = 'light',
   children,
-}: ColorModeProviderPropTypes): ReactElement => {
+}) => {
   const [colorMode, setColorMode] = useState(value);
 
   const toggleColorMode = (): void => {
@@ -36,6 +36,7 @@ export const ColorModeProvider = ({
         setColorMode('light');
         break;
     }
+    console.log('ran toggle');
   };
 
   return (
@@ -51,19 +52,19 @@ export const ColorModeProvider = ({
   );
 };
 
-export const DarkMode = ({
+interface ColorModeComponentPropTypes {
+  children: React.ReactNode;
+}
+
+export const DarkMode: React.FC<ColorModeComponentPropTypes> = ({
   children,
-}: {
-  children: ReactNode;
-}): ReactElement => {
+}) => {
   return <ColorModeProvider value="dark">{children}</ColorModeProvider>;
 };
 
-export const LightMode = ({
+export const LightMode: React.FC<ColorModeComponentPropTypes> = ({
   children,
-}: {
-  children: ReactNode;
-}): ReactElement => {
+}) => {
   return <ColorModeProvider value="light">{children}</ColorModeProvider>;
 };
 

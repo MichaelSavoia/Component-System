@@ -25,9 +25,9 @@ import {
   TypographyProps,
   ZIndexProps,
 } from 'styled-system';
+import React from 'react';
 
 import { AsType } from './types';
-import { ReactNode } from 'react';
 
 const systemProps = compose(
   border,
@@ -48,7 +48,7 @@ const systemProps = compose(
   })
 );
 
-export interface BoxSystemPropTypes
+export interface BoxPropTypes
   extends BorderProps,
     ColorProps,
     DisplayProps,
@@ -61,11 +61,11 @@ export interface BoxSystemPropTypes
     TypographyProps,
     ZIndexProps,
     AsType {
-  children?: ReactNode;
+  children?: React.ReactNode;
   color?: string;
   transition?: string;
   outline?: string;
   whiteSpace?: string;
 }
 
-export const Box = styled.div<BoxSystemPropTypes>(systemProps);
+export const Box = styled.div<BoxPropTypes>(systemProps);

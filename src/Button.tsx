@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement, AllHTMLAttributes } from 'React';
+import React, { AllHTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 import { typography, TypographyProps } from 'styled-system';
 
@@ -18,7 +18,7 @@ const PsuedoButton = styled(PseudoBox)<
 `;
 
 export interface ButtonPropTypes {
-  children?: ReactNode;
+  children?: React.ReactNode;
   isDisabled?: boolean;
   isFullWidth?: boolean;
   isLoading?: boolean;
@@ -28,7 +28,7 @@ export interface ButtonPropTypes {
   onClick?: NativeButtonProps['onClick'];
 }
 
-export const Button = ({
+export const Button: React.FC<ButtonPropTypes> = ({
   children,
   color = 'gray',
   isDisabled = false,
@@ -38,7 +38,7 @@ export const Button = ({
   variant = 'solid',
   onClick,
   ...props
-}: ButtonPropTypes): ReactElement => {
+}) => {
   const _isDisabled = isDisabled || isLoading;
   const _onClick = _isDisabled ? undefined : onClick;
   return (
@@ -46,7 +46,7 @@ export const Button = ({
       as="button"
       disabled={_isDisabled}
       aria-disabled={_isDisabled}
-      width={isFullWidth ? 'fluid' : undefined}
+      width={isFullWidth ? 'full' : undefined}
       {...useButtonStyles({ color, size, variant })}
       {...props}
       onClick={_onClick}

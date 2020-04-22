@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import { Box } from './Box';
 import { useColorMode, ColorModeOptionType } from './ColorModeProvider';
@@ -16,7 +16,7 @@ interface VariantProps extends DividerProps {
 
 const dividerBaseProps = {
   height: 'px',
-  width: 'fluid',
+  width: 'full',
 };
 
 const dividerWeightProps = ({ colorMode, weight }: VariantProps): object => {
@@ -55,7 +55,7 @@ const useDividerStyles = (props: DividerProps): object => {
   };
 };
 
-export const Divider = (props: DividerProps): ReactElement => {
+export const Divider: React.FC<DividerProps> = props => {
   return (
     <Box position="relative">
       <Box {...useDividerStyles(props)} />

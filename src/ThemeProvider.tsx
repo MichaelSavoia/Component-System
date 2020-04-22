@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React from 'react';
 import {
   ThemeProvider as EmotionThemeProvider,
   useTheme as emotionUseTheme,
@@ -9,13 +9,13 @@ import { theme as defaultTheme, DefaultTheme } from './theme';
 
 interface ThemeProviderProps {
   theme?: object;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-export const ThemeProvider = ({
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   theme = {},
   children,
-}: ThemeProviderProps): ReactElement => {
+}) => {
   const _theme = defaultsDeep(theme, defaultTheme);
   return <EmotionThemeProvider theme={_theme}>{children}</EmotionThemeProvider>;
 };

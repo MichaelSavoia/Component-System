@@ -15,7 +15,7 @@ import { AsType } from './types';
 
 const systemProps = compose(color, display, space, typography);
 
-export interface StrongSystemPropTypes
+export interface StrongPropTypes
   extends ColorProps,
     DisplayProps,
     SpaceProps,
@@ -24,7 +24,7 @@ export interface StrongSystemPropTypes
   color?: string;
 }
 
-export const Strong = styled.span<StrongSystemPropTypes>`
+export const Strong = styled.span<StrongPropTypes>`
   ${systemProps}
 `;
 

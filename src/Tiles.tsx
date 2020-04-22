@@ -1,15 +1,15 @@
-import React, { useContext, ReactElement } from 'react';
+import React, { useContext } from 'react';
 import { system } from 'styled-system';
 import styled from '@emotion/styled';
 
 import { Flex } from './Flex';
-import { Box, BoxSystemPropTypes } from './Box';
+import { Box, BoxPropTypes } from './Box';
 import { negativeSpaceSystem } from './utils/negativeSpaceSystem';
 import { StackContext } from './Stack';
 
 import { SystemPropType } from './types';
 
-interface TilesPropTypes extends BoxSystemPropTypes {
+interface TilesPropTypes extends BoxPropTypes {
   columns?: number | number[];
   space?: SystemPropType;
   verticalSpace?: SystemPropType;
@@ -30,25 +30,22 @@ const Tile = styled(Box)(
   })
 );
 
-export const Tiles = ({
+export const Tiles: React.FC<TilesPropTypes> = ({
   children,
   columns = 2,
   space = 2,
   verticalSpace,
   ...props
-}: TilesPropTypes): ReactElement => {
+}) => {
   const validChildren = React.Children.toArray(children).filter(
     React.isValidElement
   );
 
   let _verticalSpace = verticalSpace;
   const stackContext = useContext(StackContext);
-  console.log(stackContext);
   if (stackContext && !verticalSpace) {
     _verticalSpace = stackContext.space;
   }
-
-  console.log(_verticalSpace);
 
   return (
     <TilesWrapper

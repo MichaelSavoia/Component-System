@@ -1,19 +1,19 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
-import { Box, BoxSystemPropTypes } from './Box';
+import { Box, BoxPropTypes } from './Box';
 import { useBadgeStyles, BadgeVariantType } from './style-hooks/useBadgeStyles';
 import { ColorOptionsType } from 'types';
 
-interface BadgePropTypes extends BoxSystemPropTypes {
+export interface BadgePropTypes extends BoxPropTypes {
   color?: ColorOptionsType;
   variant?: BadgeVariantType;
 }
 
-export const Badge = ({
+export const Badge: React.FC<BadgePropTypes> = ({
   color = 'gray',
   variant = 'outline',
   ...props
-}: BadgePropTypes): ReactElement => {
+}) => {
   return (
     <Box
       display="inline-block"

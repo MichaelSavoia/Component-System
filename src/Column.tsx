@@ -1,4 +1,4 @@
-import React, { useContext, ReactNode, ReactElement } from 'react';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { system } from 'styled-system';
 
@@ -45,7 +45,6 @@ const ColumnWrapper = styled(Box)(
               }
               percent = calculatedPercent;
             }
-            console.log('value: ', value);
             return `0 0 ${percent * 100}%`;
         }
       },
@@ -55,15 +54,14 @@ const ColumnWrapper = styled(Box)(
 
 interface ColumnPropTypes {
   width?: SystemPropType;
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
-export const Column = ({
+export const Column: React.FC<ColumnPropTypes> = ({
   width = 'auto',
   children,
-}: ColumnPropTypes): ReactElement => {
+}) => {
   const { space, verticalSpace } = useContext(ColumnsContext);
-  console.log({ width });
   return (
     <ColumnWrapper
       paddingTop={verticalSpace}

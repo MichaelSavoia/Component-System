@@ -17,11 +17,13 @@ interface VariantProps extends UseBadgeStyleProps {
   colorMode: ColorModeOptionType;
 }
 
-const solidStyle = ({
+type StyleConstructorType = (arg: VariantProps) => object;
+
+const solidStyle: StyleConstructorType = ({
   theme: { colors },
   color,
   colorMode,
-}: VariantProps): object => {
+}) => {
   const _color = colors[color] && colors[color][500];
   const darkModeBg = addOpacity(_color, 0.6);
   const styles = {
@@ -37,34 +39,35 @@ const solidStyle = ({
   return styles[colorMode];
 };
 
-const subtleStyle = ({
+const subtleStyle: StyleConstructorType = ({
   theme: { colors },
   color,
   colorMode,
-}: VariantProps): object => {
+}) => {
   const _color = colors[color] && colors[color][200];
   const alphaColors = generateAlphaColors(_color);
   const darkModeBg = alphaColors[300];
+  const darkModeColor = addOpacity(_color, 0.8);
 
   const styles = {
     light: {
       bg: get(color, 100),
-      color: get(color, 800),
+      color: get(color, 500),
     },
     dark: {
       bg: darkModeBg,
-      color: get(color, 200),
+      color: darkModeColor,
     },
   };
 
   return styles[colorMode];
 };
 
-const outlineStyle = ({
+const outlineStyle: StyleConstructorType = ({
   theme: { colors },
   color,
   colorMode,
-}: VariantProps): object => {
+}) => {
   const _color = colors[color] && colors[color][200];
   const alphaColors = generateAlphaColors(_color);
   const darkModeColor = addOpacity(_color, 0.8);
@@ -87,7 +90,7 @@ const outlineStyle = ({
   return styles[colorMode];
 };
 
-const variantProps = (props: VariantProps): object => {
+const variantProps: StyleConstructorType = props => {
   const { variant } = props;
   switch (variant) {
     case 'solid':

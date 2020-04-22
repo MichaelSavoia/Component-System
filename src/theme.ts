@@ -237,7 +237,7 @@ export const baseSizes = {
 };
 
 const largeSizes = {
-  fluid: '100%',
+  full: '100%',
   '3xs': '14rem',
   '2xs': '16rem',
   xs: '20rem',

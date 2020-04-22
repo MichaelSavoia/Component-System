@@ -1,7 +1,7 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 
-import { Box, BoxSystemPropTypes } from './Box';
+import { Box, BoxPropTypes } from './Box';
 import { Flex } from './Flex';
 import { StackContext } from './Stack';
 
@@ -10,18 +10,18 @@ import { SystemPropType } from './types';
 
 const InlineWrapper = styled(Flex)(negativeSpaceSystem);
 
-interface InlinePropTypes extends BoxSystemPropTypes {
-  children?: ReactNode;
+interface InlinePropTypes extends BoxPropTypes {
+  children?: React.ReactNode;
   space?: SystemPropType;
   verticalSpace?: SystemPropType;
 }
 
-export const Inline = ({
+export const Inline: React.FC<InlinePropTypes> = ({
   children,
   space = 2,
   verticalSpace,
   ...props
-}: InlinePropTypes): ReactElement => {
+}) => {
   const validChildren = React.Children.toArray(children).filter(
     React.isValidElement
   );

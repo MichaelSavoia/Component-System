@@ -1,7 +1,7 @@
-import React, { ReactElement, ReactNode, createContext } from 'react';
+import React, { createContext } from 'react';
 import styled from '@emotion/styled';
 
-import { BoxSystemPropTypes } from './Box';
+import { BoxPropTypes } from './Box';
 import { Flex } from './Flex';
 import { StackContext } from './Stack';
 
@@ -20,18 +20,18 @@ export const ColumnsContext = createContext<ColumnsContextTypes>({
 
 const ColumnsWrapper = styled(Flex)(negativeSpaceSystem);
 
-interface ColumnsPropTypes extends BoxSystemPropTypes {
-  children?: ReactNode;
+interface ColumnsPropTypes extends BoxPropTypes {
+  children?: React.ReactNode;
   space?: SystemPropType;
   verticalSpace?: SystemPropType;
 }
 
-export const Columns = ({
+export const Columns: React.FC<ColumnsPropTypes> = ({
   children,
   space = 2,
   verticalSpace,
   ...props
-}: ColumnsPropTypes): ReactElement => {
+}) => {
   let _verticalSpace = verticalSpace;
   const stackContext = React.useContext(StackContext);
   if (stackContext && !verticalSpace) {

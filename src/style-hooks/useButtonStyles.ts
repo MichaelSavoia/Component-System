@@ -91,6 +91,8 @@ interface VariantProps extends UseButtonStyleProps {
   theme: DefaultTheme;
 }
 
+type VariantFunctionType = (props: VariantProps) => object;
+
 const graySolidVariantStyle = {
   light: {
     backgroundColor: 'gray.100',
@@ -112,7 +114,7 @@ const graySolidVariantStyle = {
   },
 };
 
-const solidVariantProps = ({ color, colorMode }: VariantProps): object => {
+const solidVariantProps: VariantFunctionType = ({ color, colorMode }) => {
   let style;
 
   if (color === 'gray') {
@@ -166,11 +168,11 @@ const grayGhostStyle = {
   },
 };
 
-const ghostVariantProps = ({
+const ghostVariantProps: VariantFunctionType = ({
   color,
   colorMode,
   theme,
-}: VariantProps): object => {
+}) => {
   const _color = theme.colors[color] && theme.colors[color][200];
   let result;
   if (color === 'gray') {
@@ -203,7 +205,7 @@ const ghostVariantProps = ({
   return result[colorMode];
 };
 
-const linkVariantProps = ({ color, colorMode }: VariantProps): object => {
+const linkVariantProps: VariantFunctionType = ({ color, colorMode }) => {
   const _color = { light: `${color}.500`, dark: `${color}.200` };
   const _activeColor = { light: `${color}.700`, dark: `${color}.500` };
   return {
@@ -220,7 +222,7 @@ const linkVariantProps = ({ color, colorMode }: VariantProps): object => {
   };
 };
 
-const outlineVariantProps = (props: VariantProps): object => {
+const outlineVariantProps: VariantFunctionType = props => {
   const { color, colorMode } = props;
   const borderColor = { light: 'gray.200', dark: 'whiteAlpha.300' };
 
@@ -244,7 +246,7 @@ const unstyledStyle = {
   textAlign: 'inherit',
 };
 
-const variantProps = (props: VariantProps): object => {
+const variantProps: VariantFunctionType = props => {
   switch (props.variant) {
     case 'solid':
       return solidVariantProps(props);

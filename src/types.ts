@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React from 'react';
 import { StyledTags } from '@emotion/styled';
 import { DefaultTheme } from './theme';
 
@@ -16,7 +16,7 @@ export type ColorOptionsType = Exclude<
 >;
 
 export interface AsType {
-  as?: keyof StyledTags<DefaultTheme> | ReactNode;
+  as?: keyof StyledTags<DefaultTheme> | React.ReactNode;
 }
 
 export type SystemPropType =

@@ -29,7 +29,7 @@ const truncate = (props: TruncateProps): {} | undefined => {
 
 const systemProps = compose(color, display, space, typography);
 
-export interface TextSystemPropTypes
+export interface TextPropTypes
   extends ColorProps,
     DisplayProps,
     SpaceProps,
@@ -39,7 +39,7 @@ export interface TextSystemPropTypes
   isTruncated?: boolean;
 }
 
-export const Text = styled.p<TextSystemPropTypes>`
+export const Text = styled.p<TextPropTypes>`
   ${systemProps}
   ${truncate}
 `;

@@ -1,7 +1,7 @@
-import React, { ReactNode, ReactElement, createContext } from 'react';
+import React, { createContext } from 'react';
 import styled from '@emotion/styled';
 
-import { Box, BoxSystemPropTypes } from './Box';
+import { Box, BoxPropTypes } from './Box';
 import { Flex } from './Flex';
 import { negativeSpaceSystem } from './utils/negativeSpaceSystem';
 
@@ -17,15 +17,15 @@ export const StackContext = createContext<StackContextType>({
 
 const StackWrapper = styled(Flex)(negativeSpaceSystem);
 
-interface StackPropTypes extends BoxSystemPropTypes, StackContextType {
-  children?: ReactNode;
+interface StackPropTypes extends BoxPropTypes, StackContextType {
+  children?: React.ReactNode;
 }
 
-export const Stack = ({
+export const Stack: React.FC<StackPropTypes> = ({
   children,
   space = 2,
   ...props
-}: StackPropTypes): ReactElement => {
+}) => {
   const validChildren = React.Children.toArray(children).filter(
     React.isValidElement
   );

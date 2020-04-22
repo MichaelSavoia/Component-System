@@ -1,12 +1,12 @@
-import React, { ReactNode, ReactElement } from 'react';
+import React from 'react';
 
-import { Text, TextSystemPropTypes } from './Text';
+import { Text, TextPropTypes } from './Text';
 
-interface HeadingProps extends TextSystemPropTypes {
-  children: ReactNode;
+interface HeadingProps extends TextPropTypes {
+  children: React.ReactNode;
 }
 
-export const Heading = ({ children, ...props }: HeadingProps): ReactElement => {
+export const Heading: React.FC<HeadingProps> = ({ children, ...props }) => {
   return (
     <Text as="h2" fontWeight="bold" fontSize="4xl" {...props}>
       {children}
