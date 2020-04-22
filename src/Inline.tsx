@@ -38,7 +38,7 @@ export const Inline: React.FC<InlinePropTypes> = ({
       flexWrap="wrap"
       {...props}
       negativeSpaceTop={_verticalSpace}
-      negativeSpaceBottom={space}
+      negativeSpaceLeft={space}
     >
       {validChildren.map((child, index) => {
         return (
