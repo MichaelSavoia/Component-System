@@ -1,5 +1,6 @@
 import React from 'react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { withA11y } from '@storybook/addon-a11y';
 
 import { Button, ButtonPropTypes } from '../src';
 
@@ -11,7 +12,7 @@ import {
 
 export default {
   title: 'Button',
-  decorators: [withKnobs],
+  decorators: [withKnobs, withA11y],
 };
 
 const LABEL = 'children';
@@ -19,7 +20,24 @@ const DEFAULT_TEXT = 'Button';
 
 export const Default: StoryComponentType<ButtonPropTypes> = props => (
   <StoryWrapper>
-    <Button color={createColorSelect()} {...props}>
+    <Button
+      color={createColorSelect()}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      {...props}
+    >
+      {text(LABEL, DEFAULT_TEXT)}
+    </Button>
+  </StoryWrapper>
+);
+
+export const Subtle: StoryComponentType<ButtonPropTypes> = props => (
+  <StoryWrapper>
+    <Button
+      variant="subtle"
+      color={createColorSelect()}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      {...props}
+    >
       {text(LABEL, DEFAULT_TEXT)}
     </Button>
   </StoryWrapper>
@@ -27,7 +45,12 @@ export const Default: StoryComponentType<ButtonPropTypes> = props => (
 
 export const Ghost: StoryComponentType<ButtonPropTypes> = props => (
   <StoryWrapper>
-    <Button variant="ghost" color={createColorSelect()} {...props}>
+    <Button
+      variant="ghost"
+      color={createColorSelect()}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      {...props}
+    >
       {text(LABEL, DEFAULT_TEXT)}
     </Button>
   </StoryWrapper>
@@ -35,7 +58,12 @@ export const Ghost: StoryComponentType<ButtonPropTypes> = props => (
 
 export const Link: StoryComponentType<ButtonPropTypes> = props => (
   <StoryWrapper>
-    <Button variant="link" color={createColorSelect()} {...props}>
+    <Button
+      variant="link"
+      color={createColorSelect()}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      {...props}
+    >
       {text(LABEL, DEFAULT_TEXT)}
     </Button>
   </StoryWrapper>
@@ -43,7 +71,12 @@ export const Link: StoryComponentType<ButtonPropTypes> = props => (
 
 export const Outline: StoryComponentType<ButtonPropTypes> = props => (
   <StoryWrapper>
-    <Button variant="outline" color={createColorSelect()} {...props}>
+    <Button
+      variant="outline"
+      color={createColorSelect()}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      {...props}
+    >
       {text(LABEL, DEFAULT_TEXT)}
     </Button>
   </StoryWrapper>
@@ -51,7 +84,12 @@ export const Outline: StoryComponentType<ButtonPropTypes> = props => (
 
 export const Solid: StoryComponentType<ButtonPropTypes> = props => (
   <StoryWrapper>
-    <Button variant="solid" color={createColorSelect()} {...props}>
+    <Button
+      variant="solid"
+      color={createColorSelect()}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      {...props}
+    >
       {text(LABEL, DEFAULT_TEXT)}
     </Button>
   </StoryWrapper>
@@ -59,7 +97,12 @@ export const Solid: StoryComponentType<ButtonPropTypes> = props => (
 
 export const Unstyled: StoryComponentType<ButtonPropTypes> = props => (
   <StoryWrapper>
-    <Button variant="unstyled" color={createColorSelect()} {...props}>
+    <Button
+      variant="unstyled"
+      color={createColorSelect()}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      {...props}
+    >
       {text(LABEL, DEFAULT_TEXT)}
     </Button>
   </StoryWrapper>

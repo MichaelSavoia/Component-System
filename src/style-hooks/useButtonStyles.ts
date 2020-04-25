@@ -1,4 +1,4 @@
-import { addOpacity } from '../utils/colors';
+import { addOpacity, get } from '../utils/colors';
 import { useColorMode, ColorModeOptionType } from '../ColorModeProvider';
 import { useTheme } from '../ThemeProvider';
 import { DefaultTheme } from '../theme';
@@ -10,7 +10,8 @@ const baseProps = {
   appearance: 'none',
   borderRadius: 'md',
   display: 'inline-flex',
-  fontWeight: 'semibold',
+  fontSize: 'lg',
+  fontWeight: 'bold',
   justifyContent: 'center',
   lineHeight: '1.2',
   outline: 'none',
@@ -75,6 +76,7 @@ const sizeProps = (size: ButtonSizeType): SizeReturnType => sizes[size];
 
 export type ButtonVariantType =
   | 'solid'
+  | 'subtle'
   | 'ghost'
   | 'link'
   | 'outline'
@@ -95,21 +97,23 @@ type VariantFunctionType = (props: VariantProps) => object;
 
 const graySolidVariantStyle = {
   light: {
-    backgroundColor: 'gray.100',
+    color: 'gray.900',
+    backgroundColor: 'gray.200',
     _hover: {
-      backgroundColor: 'gray.200',
+      backgroundColor: 'gray.300',
     },
     _active: {
-      backgroundColor: 'gray.300',
+      backgroundColor: 'gray.400',
     },
   },
   dark: {
-    backgroundColor: 'whiteAlpha.200',
+    color: 'white',
+    backgroundColor: 'whiteAlpha.300',
     _hover: {
-      backgroundColor: 'whiteAlpha.300',
+      backgroundColor: 'whiteAlpha.400',
     },
     _active: {
-      backgroundColor: 'whiteAlpha.400',
+      backgroundColor: 'whiteAlpha.500',
     },
   },
 };
@@ -122,23 +126,86 @@ const solidVariantProps: VariantFunctionType = ({ color, colorMode }) => {
   } else {
     style = {
       light: {
-        backgroundColor: `${color}.500`,
+        backgroundColor: get(color, 600),
         color: 'white',
         _hover: {
-          backgroundColor: `${color}.600`,
+          backgroundColor: get(color, 500),
         },
         _active: {
-          backgroundColor: `${color}.700`,
+          backgroundColor: get(color, 700),
         },
       },
       dark: {
-        backgroundColor: `${color}.200`,
+        backgroundColor: get(color, 400),
         color: 'gray.800',
         _hover: {
-          backgroundColor: `${color}.300`,
+          backgroundColor: get(color, 300),
         },
         _active: {
-          backgroundColor: `${color}.400`,
+          backgroundColor: get(color, 500),
+        },
+      },
+    };
+  }
+
+  return style[colorMode];
+};
+
+const graySubtleStyle = {
+  light: {
+    color: 'gray.900',
+    bg: 'gray.100',
+    _hover: {
+      color: 'gray.600',
+    },
+    _active: {
+      color: 'gray.800',
+      bg: 'gray.200',
+    },
+  },
+  dark: {
+    color: 'whiteAlpha.800',
+    bg: 'whiteAlpha.200',
+    _hover: {
+      color: 'white',
+    },
+    _active: {
+      color: 'whiteAlpha.900',
+      bg: 'whiteAlpha.300',
+    },
+  },
+};
+
+const subtleVariantProps: VariantFunctionType = ({
+  color,
+  colorMode,
+  theme,
+}) => {
+  const _color = theme.colors[color] && theme.colors[color][300];
+  let style;
+  if (color === 'gray') {
+    style = graySubtleStyle;
+  } else {
+    style = {
+      light: {
+        color: get(color, 700),
+        bg: get(color, 100),
+        _hover: {
+          color: get(color, 500),
+        },
+        _active: {
+          color: get(color, 600),
+          bg: get(color, 200),
+        },
+      },
+      dark: {
+        color: get(color, 400),
+        bg: addOpacity(_color, 0.12),
+        _hover: {
+          color: get(color, 300),
+        },
+        _active: {
+          bg: addOpacity(_color, 0.24),
         },
       },
     };
@@ -173,24 +240,24 @@ const ghostVariantProps: VariantFunctionType = ({
   colorMode,
   theme,
 }) => {
-  const _color = theme.colors[color] && theme.colors[color][200];
+  const _color = theme.colors[color] && theme.colors[color][300];
   let result;
   if (color === 'gray') {
     result = grayGhostStyle;
   } else {
     result = {
       light: {
-        color: `${color}.500`,
+        color: get(color, 600),
         bg: 'transparent',
         _hover: {
-          bg: `${color}.50`,
+          bg: get(color, 50),
         },
         _active: {
-          bg: `${color}.100`,
+          bg: get(color, 100),
         },
       },
       dark: {
-        color: `${color}.200`,
+        color: get(color, 400),
         bg: 'transparent',
         _hover: {
           bg: addOpacity(_color, 0.12),
@@ -206,15 +273,16 @@ const ghostVariantProps: VariantFunctionType = ({
 };
 
 const linkVariantProps: VariantFunctionType = ({ color, colorMode }) => {
-  const _color = { light: `${color}.500`, dark: `${color}.200` };
-  const _activeColor = { light: `${color}.700`, dark: `${color}.500` };
+  const _color = { light: get(color, 600), dark: get(color, 200) };
+  const _hoverColor = { light: get(color, 500), dark: get(color, 500) };
+  const _activeColor = { light: get(color, 700), dark: get(color, 500) };
   return {
     p: 0,
     height: 'auto',
     lineHeight: 'normal',
     color: _color[colorMode],
     _hover: {
-      textDecoration: 'underline',
+      color: _hoverColor[colorMode],
     },
     _active: {
       color: _activeColor[colorMode],
@@ -224,10 +292,10 @@ const linkVariantProps: VariantFunctionType = ({ color, colorMode }) => {
 
 const outlineVariantProps: VariantFunctionType = props => {
   const { color, colorMode } = props;
-  const borderColor = { light: 'gray.200', dark: 'whiteAlpha.300' };
+  const borderColor = { light: 'gray.300', dark: 'whiteAlpha.300' };
 
   return {
-    border: '2px',
+    border: '1px',
     borderColor: color === 'gray' ? borderColor[colorMode] : 'current',
     ...ghostVariantProps(props),
   };
@@ -250,6 +318,8 @@ const variantProps: VariantFunctionType = props => {
   switch (props.variant) {
     case 'solid':
       return solidVariantProps(props);
+    case 'subtle':
+      return subtleVariantProps(props);
     case 'ghost':
       return ghostVariantProps(props);
     case 'link':

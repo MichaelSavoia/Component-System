@@ -11,20 +11,8 @@ export interface BadgePropTypes extends BoxPropTypes {
 
 export const Badge: React.FC<BadgePropTypes> = ({
   color = 'gray',
-  variant = 'outline',
+  variant = 'subtle',
   ...props
 }) => {
-  return (
-    <Box
-      display="inline-block"
-      px={2}
-      py={1}
-      fontSize="xs"
-      borderRadius="sm"
-      whiteSpace="nowrap"
-      verticalAlign="middle"
-      {...useBadgeStyles({ color, variant })}
-      {...props}
-    />
-  );
+  return <Box {...useBadgeStyles({ color, variant })} {...props} />;
 };

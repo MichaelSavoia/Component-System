@@ -4,7 +4,6 @@ import { ColorOptionsType } from '../../src';
 
 const colorOptions: ColorOptionsType[] = [
   'blue',
-  'cyan',
   'gray',
   'green',
   'indigo',

@@ -5,6 +5,16 @@ import { useColorMode, ColorModeOptionType } from '../ColorModeProvider';
 
 import { ColorOptionsType } from '../types';
 
+const baseProps = {
+  display: 'inline-block',
+  fontSize: 'xs',
+  fontWeight: 'semibold',
+  px: '2',
+  py: '1',
+  verticalAlign: 'middle',
+  whiteSpace: 'middle',
+};
+
 export type BadgeVariantType = 'subtle' | 'solid' | 'outline';
 
 interface UseBadgeStyleProps {
@@ -24,7 +34,7 @@ const solidStyle: StyleConstructorType = ({
   color,
   colorMode,
 }) => {
-  const _color = colors[color] && colors[color][500];
+  const _color = colors[color] && colors[color][400];
   const darkModeBg = addOpacity(_color, 0.6);
   const styles = {
     light: {
@@ -44,15 +54,15 @@ const subtleStyle: StyleConstructorType = ({
   color,
   colorMode,
 }) => {
-  const _color = colors[color] && colors[color][200];
+  const _color = colors[color] && colors[color][400];
   const alphaColors = generateAlphaColors(_color);
-  const darkModeBg = alphaColors[300];
-  const darkModeColor = addOpacity(_color, 0.8);
+  const darkModeBg = alphaColors[400];
+  const darkModeColor = colors[color][300];
 
   const styles = {
     light: {
       bg: get(color, 100),
-      color: get(color, 500),
+      color: get(color, 700),
     },
     dark: {
       bg: darkModeBg,
@@ -68,17 +78,17 @@ const outlineStyle: StyleConstructorType = ({
   color,
   colorMode,
 }) => {
-  const _color = colors[color] && colors[color][200];
+  const _color = colors[color] && colors[color][300];
   const alphaColors = generateAlphaColors(_color);
-  const darkModeColor = addOpacity(_color, 0.8);
+  const darkModeColor = colors[color][400];
   const darkModeBg = alphaColors[300];
-  const boxShadowColor = colors[color] && colors[color][500];
+  const boxShadowColor = colors[color] && colors[color][600];
 
   const styles = {
     light: {
       bg: get(color, 100),
       boxShadow: `inset 0 0 0px 1px ` + boxShadowColor,
-      color: get(color, 500),
+      color: get(color, 700),
     },
     dark: {
       bg: darkModeBg,
@@ -109,5 +119,8 @@ export const useBadgeStyles = (props: UseBadgeStyleProps): object => {
   const { colorMode } = useColorMode();
   const _props = { ...props, theme, colorMode };
 
-  return variantProps(_props);
+  return {
+    ...baseProps,
+    ...variantProps(_props),
+  };
 };

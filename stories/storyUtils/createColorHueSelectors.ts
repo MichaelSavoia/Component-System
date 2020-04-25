@@ -21,7 +21,6 @@ const colorOptions: ColorKeysType[] = [
   'blackAlpha',
   'blue',
   'current',
-  'cyan',
   'gray',
   'green',
   'indigo',
