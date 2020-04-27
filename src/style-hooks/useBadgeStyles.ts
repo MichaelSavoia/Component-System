@@ -6,12 +6,16 @@ import { useColorMode, ColorModeOptionType } from '../ColorModeProvider';
 import { ColorOptionsType } from '../types';
 
 const baseProps = {
+  borderRadius: 'full',
   display: 'inline-block',
   fontSize: 'xs',
   fontWeight: 'semibold',
+  letterSpacing: 'wide',
+  lineHeight: 'none',
   px: '2',
   py: '1',
   verticalAlign: 'middle',
+  textTransform: 'uppercase',
   whiteSpace: 'middle',
 };
 
@@ -62,7 +66,7 @@ const subtleStyle: StyleConstructorType = ({
   const styles = {
     light: {
       bg: get(color, 100),
-      color: get(color, 700),
+      color: get(color, 800),
     },
     dark: {
       bg: darkModeBg,

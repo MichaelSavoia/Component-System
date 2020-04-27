@@ -34,8 +34,8 @@ export const Button: React.FC<ButtonPropTypes> = ({
   isDisabled = false,
   isFullWidth = false,
   isLoading = false,
-  size = 'sm',
-  variant = 'solid',
+  size = 'md',
+  variant = 'default',
   onClick,
   ...props
 }) => {

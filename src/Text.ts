@@ -4,6 +4,7 @@ import {
   compose,
   display,
   space,
+  system,
   typography,
   ColorProps,
   DisplayProps,
@@ -27,7 +28,15 @@ const truncate = (props: TruncateProps): {} | undefined => {
   return;
 };
 
-const systemProps = compose(color, display, space, typography);
+const systemProps = compose(
+  color,
+  display,
+  space,
+  typography,
+  system({
+    textTransform: true,
+  })
+);
 
 export interface TextPropTypes
   extends ColorProps,
@@ -37,6 +46,7 @@ export interface TextPropTypes
     AsType {
   color?: string;
   isTruncated?: boolean;
+  textTransform?: string;
 }
 
 export const Text = styled.p<TextPropTypes>`

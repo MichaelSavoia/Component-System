@@ -11,10 +11,13 @@ export default {
   decorators: [withKnobs],
 };
 
+const LABEL = 'children';
+const DEFAULT_TEXT = 'Badge text';
+
 export const Default: StoryComponentType<BadgePropTypes> = props => (
   <StoryWrapper>
     <Badge color={createColorSelect()} {...props}>
-      {text('children', 'Badge')}
+      {text(LABEL, DEFAULT_TEXT)}
     </Badge>
   </StoryWrapper>
 );
@@ -22,7 +25,7 @@ export const Default: StoryComponentType<BadgePropTypes> = props => (
 export const Outline: StoryComponentType<BadgePropTypes> = props => (
   <StoryWrapper>
     <Badge variant="outline" color={createColorSelect()} {...props}>
-      {text('children', 'Badge')}
+      {text(LABEL, DEFAULT_TEXT)}
     </Badge>
   </StoryWrapper>
 );
@@ -30,7 +33,7 @@ export const Outline: StoryComponentType<BadgePropTypes> = props => (
 export const Solid: StoryComponentType<BadgePropTypes> = props => (
   <StoryWrapper>
     <Badge variant="solid" color={createColorSelect()} {...props}>
-      {text('children', 'Badge')}
+      {text(LABEL, DEFAULT_TEXT)}
     </Badge>
   </StoryWrapper>
 );
@@ -38,7 +41,7 @@ export const Solid: StoryComponentType<BadgePropTypes> = props => (
 export const Subtle: StoryComponentType<BadgePropTypes> = props => (
   <StoryWrapper>
     <Badge variant="subtle" color={createColorSelect()} {...props}>
-      {text('children', 'Badge')}
+      {text(LABEL, DEFAULT_TEXT)}
     </Badge>
   </StoryWrapper>
 );
