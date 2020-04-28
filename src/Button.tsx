@@ -10,9 +10,9 @@ import {
 } from './style-hooks/useButtonStyles';
 import { ColorOptionsType } from './types';
 
-type NativeButtonProps = AllHTMLAttributes<HTMLDivElement>;
+type NativeProps = AllHTMLAttributes<HTMLDivElement>;
 const PsuedoButton = styled(PseudoBox)<
-  PseudoBoxPropTypes & TypographyProps & NativeButtonProps
+  PseudoBoxPropTypes & TypographyProps & NativeProps
 >`
   ${typography}
 `;
@@ -25,7 +25,7 @@ export interface ButtonPropTypes {
   size?: ButtonSizeType;
   color?: ColorOptionsType;
   variant?: ButtonVariantType;
-  onClick?: NativeButtonProps['onClick'];
+  onClick?: NativeProps['onClick'];
 }
 
 export const Button: React.FC<ButtonPropTypes> = ({

@@ -100,6 +100,7 @@ const grayDefaultVariantStyle = {
   light: {
     color: 'gray.700',
     borderColor: 'gray.300',
+    backgroundColor: 'white',
     _hover: {
       color: 'gray.500',
     },
@@ -109,14 +110,15 @@ const grayDefaultVariantStyle = {
     },
   },
   dark: {
-    color: 'gray.700',
-    borderColor: 'gray.300',
+    color: 'white',
+    borderColor: 'gray.400',
+    backgroundColor: 'gray.800',
     _hover: {
-      color: 'gray.500',
+      color: 'gray.200',
     },
     _active: {
-      color: 'gray.700',
-      active: 'gray.100',
+      color: 'white',
+      backgroundColor: 'gray.900',
     },
   },
 };
@@ -131,6 +133,7 @@ const defaultVariantStyle: VariantFunctionType = ({ color, colorMode }) => {
       light: {
         color: get(color, 700),
         borderColor: 'gray.300',
+        backgroundColor: 'white',
         _hover: {
           color: get(color, 500),
         },
@@ -139,7 +142,18 @@ const defaultVariantStyle: VariantFunctionType = ({ color, colorMode }) => {
           backgroundColor: 'gray.100',
         },
       },
-      dark: {},
+      dark: {
+        color: get(color, 400),
+        borderColor: 'gray.400',
+        backgroundColor: 'gray.800',
+        _hover: {
+          color: get(color, 300),
+        },
+        _active: {
+          color: get(color, 400),
+          backgroundColor: 'gray.900',
+        },
+      },
     };
   }
 
