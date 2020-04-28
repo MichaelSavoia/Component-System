@@ -22,7 +22,7 @@ export const Default: StoryComponentType<ButtonPropTypes> = props => (
   <StoryWrapper>
     <Button
       color={createColorSelect()}
-      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'md')}
       {...props}
     >
       {text(LABEL, DEFAULT_TEXT)}
@@ -35,7 +35,7 @@ export const Subtle: StoryComponentType<ButtonPropTypes> = props => (
     <Button
       variant="subtle"
       color={createColorSelect()}
-      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'md')}
       {...props}
     >
       {text(LABEL, DEFAULT_TEXT)}
@@ -48,7 +48,7 @@ export const Ghost: StoryComponentType<ButtonPropTypes> = props => (
     <Button
       variant="ghost"
       color={createColorSelect()}
-      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'md')}
       {...props}
     >
       {text(LABEL, DEFAULT_TEXT)}
@@ -61,7 +61,7 @@ export const Link: StoryComponentType<ButtonPropTypes> = props => (
     <Button
       variant="link"
       color={createColorSelect()}
-      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'md')}
       {...props}
     >
       {text(LABEL, DEFAULT_TEXT)}
@@ -74,7 +74,7 @@ export const Outline: StoryComponentType<ButtonPropTypes> = props => (
     <Button
       variant="outline"
       color={createColorSelect()}
-      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'md')}
       {...props}
     >
       {text(LABEL, DEFAULT_TEXT)}
@@ -87,7 +87,7 @@ export const Solid: StoryComponentType<ButtonPropTypes> = props => (
     <Button
       variant="solid"
       color={createColorSelect()}
-      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'md')}
       {...props}
     >
       {text(LABEL, DEFAULT_TEXT)}
@@ -100,7 +100,7 @@ export const Unstyled: StoryComponentType<ButtonPropTypes> = props => (
     <Button
       variant="unstyled"
       color={createColorSelect()}
-      size={select('size', ['xs', 'sm', 'md', 'lg'], 'sm')}
+      size={select('size', ['xs', 'sm', 'md', 'lg'], 'md')}
       {...props}
     >
       {text(LABEL, DEFAULT_TEXT)}
