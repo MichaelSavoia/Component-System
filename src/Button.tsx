@@ -35,7 +35,11 @@ export const Button: React.FC<ButtonPropTypes> = ({
   isFullWidth = false,
   isLoading = false,
   size = 'md',
+<<<<<<< HEAD
   variant = 'solid',
+=======
+  variant = 'default',
+>>>>>>> 702b74e3233dd2427c60e07e701ce34c93caffc1
   onClick,
   ...props
 }) => {

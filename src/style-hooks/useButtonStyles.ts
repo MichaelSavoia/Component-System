@@ -11,7 +11,7 @@ const baseProps = {
   borderRadius: 'md',
   display: 'inline-flex',
   fontSize: 'lg',
-  fontWeight: 'bold',
+  fontWeight: 'medium',
   justifyContent: 'center',
   lineHeight: '1.2',
   outline: 'none',
@@ -75,6 +75,7 @@ interface SizeReturnType {
 const sizeProps = (size: ButtonSizeType): SizeReturnType => sizes[size];
 
 export type ButtonVariantType =
+  | 'default'
   | 'solid'
   | 'subtle'
   | 'ghost'
@@ -95,15 +96,65 @@ interface VariantProps extends UseButtonStyleProps {
 
 type VariantFunctionType = (props: VariantProps) => object;
 
+const grayDefaultVariantStyle = {
+  light: {
+    color: 'gray.700',
+    borderColor: 'gray.300',
+    _hover: {
+      color: 'gray.500',
+    },
+    _active: {
+      color: 'gray.700',
+      backgroundColor: 'gray.100',
+    },
+  },
+  dark: {
+    color: 'gray.700',
+    borderColor: 'gray.300',
+    _hover: {
+      color: 'gray.500',
+    },
+    _active: {
+      color: 'gray.700',
+      active: 'gray.100',
+    },
+  },
+};
+
+const defaultVariantStyle: VariantFunctionType = ({ color, colorMode }) => {
+  let style;
+
+  if (color === 'gray') {
+    style = grayDefaultVariantStyle;
+  } else {
+    style = {
+      light: {
+        color: get(color, 700),
+        borderColor: 'gray.300',
+        _hover: {
+          color: get(color, 500),
+        },
+        _active: {
+          color: get(color, 700),
+          backgroundColor: 'gray.100',
+        },
+      },
+      dark: {},
+    };
+  }
+
+  return { borderWidth: '1px', ...style[colorMode] };
+};
+
 const graySolidVariantStyle = {
   light: {
     color: 'gray.900',
-    backgroundColor: 'gray.200',
+    backgroundColor: 'gray.300',
     _hover: {
-      backgroundColor: 'gray.300',
+      backgroundColor: 'gray.200',
     },
     _active: {
-      backgroundColor: 'gray.400',
+      backgroundColor: 'gray.300',
     },
   },
   dark: {
@@ -113,7 +164,7 @@ const graySolidVariantStyle = {
       backgroundColor: 'whiteAlpha.400',
     },
     _active: {
-      backgroundColor: 'whiteAlpha.500',
+      backgroundColor: 'whiteAlpha.300',
     },
   },
 };
@@ -250,10 +301,10 @@ const ghostVariantProps: VariantFunctionType = ({
         color: get(color, 600),
         bg: 'transparent',
         _hover: {
-          bg: get(color, 50),
+          bg: get(color, 100),
         },
         _active: {
-          bg: get(color, 100),
+          bg: get(color, 200),
         },
       },
       dark: {
@@ -316,6 +367,8 @@ const unstyledStyle = {
 
 const variantProps: VariantFunctionType = props => {
   switch (props.variant) {
+    case 'default':
+      return defaultVariantStyle(props);
     case 'solid':
       return solidVariantProps(props);
     case 'subtle':

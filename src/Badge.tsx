@@ -14,5 +14,5 @@ export const Badge: React.FC<BadgePropTypes> = ({
   variant = 'subtle',
   ...props
 }) => {
-  return <Box {...useBadgeStyles({ color, variant })} {...props} />;
+  return <Box as="span" {...useBadgeStyles({ color, variant })} {...props} />;
 };

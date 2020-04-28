@@ -43,6 +43,7 @@ const systemProps = compose(
   zIndex,
   system({
     outline: true,
+    textTransform: true,
     transition: true,
     whiteSpace: true,
   })
@@ -63,6 +64,7 @@ export interface BoxPropTypes
     AsType {
   children?: React.ReactNode;
   color?: string;
+  textTransform?: string;
   transition?: string;
   outline?: string;
   whiteSpace?: string;

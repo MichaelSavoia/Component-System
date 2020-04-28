@@ -16,7 +16,7 @@ export default {
 };
 
 const LABEL = 'children';
-const DEFAULT_TEXT = 'Button';
+const DEFAULT_TEXT = 'Button text';
 
 export const Default: StoryComponentType<ButtonPropTypes> = props => (
   <StoryWrapper>
