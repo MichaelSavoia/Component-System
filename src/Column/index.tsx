@@ -68,3 +68,5 @@ export const Column = ({ width = 'fluid', children }: ColumnPropTypes) => {
     </ColumnWrapper>
   );
 };
+
+Column.displayName = 'Column';

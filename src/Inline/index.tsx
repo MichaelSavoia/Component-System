@@ -85,3 +85,5 @@ export const Inline = ({
     </InlineTopMargin>
   );
 };
+
+Inline.displayName = 'Inline';

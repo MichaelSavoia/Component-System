@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 
 import { ColorOptions } from '../theme';
 import {
@@ -27,11 +27,15 @@ export interface TextProps
   align?: ResponsiveTextAlign;
 }
 
-export const Text = forwardRef<HTMLDivElement, TextProps>((props, ref) => {
-  const { font = 'body', size, weight, color, ...rest } = props;
+export const Text: React.FC<TextProps> = ({
+  font = 'body',
+  size,
+  weight,
+  color,
+  ...rest
+}: TextProps) => {
   return (
     <Box
-      ref={ref}
       as="span"
       fontFamily={font}
       fontSize={size}
@@ -40,4 +44,6 @@ export const Text = forwardRef<HTMLDivElement, TextProps>((props, ref) => {
       {...rest}
     />
   );
-});
+};
+
+Text.displayName = 'Text';

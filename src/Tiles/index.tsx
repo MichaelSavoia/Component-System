@@ -77,3 +77,5 @@ export const Tiles = ({
     </TilesTopMargin>
   );
 };
+
+Tiles.displayName = 'Tiles';

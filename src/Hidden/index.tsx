@@ -19,7 +19,7 @@ export const Hidden = ({
   inline = false,
 }: HiddenProps) => {
   const displayValue = inline ? 'inline' : 'block';
-  let display: [
+  const display: [
     DisplayRules | null,
     DisplayRules | null,
     DisplayRules | null,
@@ -59,15 +59,11 @@ export const Hidden = ({
     }
   }
 
-  let belowIndex;
-  if (below) {
-    if (below === 'tablet') {
-      belowIndex;
-    }
-  }
   return (
     <Box as={inline ? 'span' : 'div'} display={display}>
       {children}
     </Box>
   );
 };
+
+Hidden.displayName = 'Hidden';

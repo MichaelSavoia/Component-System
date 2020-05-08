@@ -12,3 +12,5 @@ export type PseudoBoxProps = SelectorProps &
 export const PseudoBox = styled(Box)<PseudoBoxProps>(props => {
   return css(getSelectorCssObject(props));
 });
+
+PseudoBox.displayName = 'PseudoBox';

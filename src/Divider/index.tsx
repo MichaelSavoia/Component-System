@@ -14,3 +14,5 @@ export const Divider = (props: DividerProps) => {
     </Box>
   );
 };
+
+Divider.displayName = 'Divider';

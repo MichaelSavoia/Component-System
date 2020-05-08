@@ -44,3 +44,5 @@ export const Button = ({
     </PseudoBox>
   );
 };
+
+Button.displayName = 'Button';

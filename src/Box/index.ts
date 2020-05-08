@@ -241,3 +241,5 @@ export const Box = styled('div', { shouldForwardProp })<BoxProps>`
   ${systemProps}
   ${truncate}
 `;
+
+Box.displayName = 'Box';

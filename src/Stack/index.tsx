@@ -47,3 +47,5 @@ export const Stack = ({ children, space = '2', ...props }: StackProps) => {
     </StackWrapper>
   );
 };
+
+Stack.displayName = 'Stack';

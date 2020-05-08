@@ -16,3 +16,5 @@ export const Badge = ({
 }: BadgeProps) => {
   return <Box as="span" {...useBadgeStyles({ color, variant })} {...props} />;
 };
+
+Badge.displayName = 'Badge';

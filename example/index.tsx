@@ -6,8 +6,6 @@ import {
   ColorModeProvider,
   CSSReset,
   Stack,
-  Inline,
-  Button,
   Box,
   Text,
 } from '../.';
@@ -17,8 +15,8 @@ const App = (): React.ReactElement => {
     <ColorModeProvider>
       <ThemeProvider>
         <CSSReset />
-        <Box bg="red.200" minHeight="100vh">
-          <Stack space="32">
+        <Box backgroundColor="red.200" minHeight="100vh">
+          <Stack>
             <Text>Test</Text>
             <Text>Test</Text>
             <Text>Test</Text>
