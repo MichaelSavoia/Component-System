@@ -1,6 +1,6 @@
 import { system } from 'styled-system';
 
-export const negativeSpaceSystem = system({
+export const negativeSpaceSystemTop = system({
   negativeSpaceTop: {
     property: 'marginTop',
     scale: 'sizes',
@@ -9,6 +9,9 @@ export const negativeSpaceSystem = system({
       return `-${_value}`;
     },
   },
+});
+
+export const negativeSpaceSystemLeft = system({
   negativeSpaceLeft: {
     property: 'marginLeft',
     scale: 'sizes',

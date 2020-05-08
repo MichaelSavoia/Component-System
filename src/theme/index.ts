@@ -29,7 +29,7 @@ export const theme = {
   zIndices,
 };
 
-export type DefaultTheme = typeof theme;
+export type Theme = typeof theme;
 
 export * from './borders';
 export * from './breakpoints';

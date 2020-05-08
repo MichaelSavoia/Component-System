@@ -1,9 +1,15 @@
 import Color from 'color';
-import { ColorOptionsType } from '../types';
 
-type HueOptionsType = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+import { Colors } from '../theme';
 
-export const get = (color: ColorOptionsType, hue: HueOptionsType): string =>
+export type ColorOptions = Exclude<
+  Colors,
+  'transparent' | 'current' | 'black' | 'white'
+>;
+
+type HueOptions = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+
+export const get = (color: ColorOptions, hue: HueOptions): string =>
   `${color}.${hue}`;
 
 export const addOpacity = (color: string, opacity: number): string =>
