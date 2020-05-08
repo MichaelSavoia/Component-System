@@ -1,6 +1,12 @@
-import { ElementType, ReactNode, HTMLAttributes } from 'react';
+import {
+  ElementType,
+  ReactNode,
+  HTMLAttributes,
+  AllHTMLAttributes,
+} from 'react';
 import styled from '@emotion/styled';
 import {
+  background,
   border,
   color,
   compose,
@@ -14,6 +20,7 @@ import {
   system,
   typography,
   zIndex,
+  BackgroundProps,
   BorderProps,
   FlexboxProps,
   GridProps,
@@ -79,6 +86,19 @@ export type DisplayRules =
 
 export type ResponsiveDisplay = ResponsiveProp<DisplayRules>;
 
+type ObjectFitRules =
+  | 'contain'
+  | 'cover'
+  | 'fill'
+  | 'inherit'
+  | 'initial'
+  | 'none'
+  | 'revert'
+  | 'scale-down'
+  | 'unset';
+
+export type ResponsiveObjectFit = ResponsiveProp<ObjectFitRules>;
+
 type PositionRules =
   | 'absolute'
   | 'fixed'
@@ -137,6 +157,7 @@ const truncate = (props: Truncate): {} | undefined => {
 };
 
 const systemProps = compose(
+  background,
   border,
   color,
   display,
@@ -149,6 +170,7 @@ const systemProps = compose(
   typography,
   zIndex,
   system({
+    objectFit: true,
     outline: true,
     textTransform: true,
     transition: true,
@@ -157,6 +179,10 @@ const systemProps = compose(
 );
 
 type NativeProps = HTMLAttributes<HTMLDivElement>;
+type NativeImageProps = Pick<
+  AllHTMLAttributes<HTMLImageElement>,
+  'alt' | 'src'
+>;
 type BoxBorderProps = Omit<
   BorderProps,
   | 'borderRadius'
@@ -169,13 +195,16 @@ type BoxBorderProps = Omit<
 >;
 
 export interface BoxProps
-  extends BoxBorderProps,
+  extends BackgroundProps,
+    BoxBorderProps,
     FlexboxProps,
     GridProps,
     OpacityProps,
     NativeProps,
+    NativeImageProps,
     Truncate {
-  as?: ElementType | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  as?: ElementType;
   backgroundColor?: ResponsiveColor;
   borderWidth?: ResponsiveBorder;
   borderColor?: ResponsiveColor;
@@ -207,6 +236,7 @@ export interface BoxProps
   maxWidth?: ResponsiveSize;
   minHeight?: ResponsiveSize;
   minWidth?: ResponsiveSize;
+  objectFit?: ResponsiveObjectFit;
   outline?: ResponsiveProp<string>;
   padding?: ResponsiveBaseSize;
   paddingX?: ResponsiveBaseSize;

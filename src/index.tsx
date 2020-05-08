@@ -1,3 +1,5 @@
+export * from './Avatar';
+export * from './AvatarGroup';
 export * from './Badge';
 export * from './Box';
 export * from './Button';
